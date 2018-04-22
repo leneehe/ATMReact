@@ -20,11 +20,16 @@ export default class Account extends Component {
     }
     else {
       let amount = +this.refs.amount.value;
-      let newBalance = this.state.balance + amount;
-      this.setState({
-        balance: newBalance
-      })
-      this.refs.amount.value = '';
+
+      if (amount < 0) {
+        alert ("You can't type negative numbers man.")
+      } else {
+        let newBalance = this.state.balance + amount;
+        this.setState({
+          balance: newBalance
+        })
+        this.refs.amount.value = '';
+      }
     }
   }
 
@@ -38,6 +43,8 @@ export default class Account extends Component {
 
       if (amount > this.state.balance) {
         alert("You can't withdraw more than your balance.");
+      } else if (amount < 0) {
+        alert ("You can't type negative numbers man.")
       } else {
         let newBalance = this.state.balance - amount;
         this.setState({
@@ -45,7 +52,7 @@ export default class Account extends Component {
         })
         this.refs.amount.value = '';
       }
-      
+
     }
   }
 
